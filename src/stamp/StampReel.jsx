@@ -266,6 +266,8 @@ export default function StampReel() {
                 <Decor kinds={c.decor} />
                 <Motif kind={c.motif} />
                 <div className="ec-frame" />
+                <div className="ec-jaali" />
+                <div className="ec-arch"><i /></div>
                 <p className="ec-date ec-in">{c.day}</p>
                 <h2 className="ec-title">
                   <Chars text={c.theme} />

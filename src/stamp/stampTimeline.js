@@ -31,6 +31,7 @@ export function buildStampTimeline(q, rootEl) {
   tl.fromTo(q('.intro-stamp'), { yPercent: -170, rotation: -18, opacity: 0 }, { yPercent: 0, rotation: -4, opacity: 1, duration: 1.3, ease: 'bounce.out' }, 0.1);
   tl.fromTo(q('.hi-w'), { scale: 0, opacity: 0, rotation: -10 }, { scale: 1, opacity: 1, rotation: 0, duration: 0.55, ease: 'back.out(2)', stagger: 0.45 }, 1.1);
   tl.fromTo(q('.intro-flower'), { scale: 0, rotation: -90 }, { scale: 1, rotation: 0, duration: 0.8, ease: 'back.out(1.8)' }, 2.7);
+  tl.fromTo(q('.intro-stamp'), { scaleY: 1, scaleX: 1, transformOrigin: '50% 100%' }, { scaleY: 0.9, scaleX: 1.07, duration: 0.12, yoyo: true, repeat: 1, ease: 'power2.out' }, 1.0);
   tl.fromTo(q('.intro-stamp'), { rotation: -4 }, { rotation: -1.2, duration: 0.4, yoyo: true, repeat: 5, ease: 'sine.inOut' }, 1.6);
   tl.to(q('.intro-stamp'), { xPercent: -175, rotation: -30, duration: 0.8, ease: 'power2.in' }, 4.0);
 
@@ -90,6 +91,8 @@ export function buildStampTimeline(q, rootEl) {
 
     // content enters
     const R = { immediateRender: false };
+    tl.fromTo(e('.ec-arch'), { scaleY: 0, opacity: 0, transformOrigin: '50% 100%' }, { scaleY: 1, opacity: 1, duration: 1.1, ease: 'expo.out', ...R }, tin + 0.15);
+    tl.fromTo(e('.ec-jaali'), { opacity: 0 }, { opacity: 1, duration: 1.2, ...R }, tin + 0.2);
     tl.fromTo(e('.ec-frame'), { opacity: 0 }, { opacity: 1, duration: 0.6, ...R }, tin + 0.2);
     tl.fromTo(e('.ec-date,.ec-kind'), { y: 14, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ...R }, tin + 0.1);
     tl.fromTo(e('.ec-title .ch'), { y: 54, opacity: 0, rotationX: -70, transformPerspective: 600 }, { y: 0, opacity: 1, rotationX: 0, duration: 0.9, ease: 'expo.out', stagger: 0.04, ...R }, tin + 0.2);

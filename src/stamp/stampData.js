@@ -45,7 +45,7 @@ export const cards = [
     ],
     motif: 'peacock',
     decor: ['lotus', 'bokeh'],
-    figs: [{ woman: { outfit: 'sharara', top: '#17b3b8', bottom: '#0f8f8a', accent: '#f2c14e' } }, { man: { top: '#1c8f84', bottom: '#e9e2cf', accent: '#f2c14e' } }, { woman: { outfit: 'saree', top: '#0f7c4a', bottom: '#2e8b57', accent: '#f2c14e' } }],
+    figs: [{ img: 'lehenga_teal' }, { man: { top: '#1c8f84', bottom: '#e9e2cf', accent: '#f2c14e' } }, { img: 'lehenga_emerald' }],
   },
   {
     id: 'sangeet',
@@ -66,7 +66,7 @@ export const cards = [
     ],
     motif: 'disco',
     decor: ['fairy', 'stars'],
-    figs: [{ woman: { outfit: 'gown', top: '#7a1a40', bottom: '#8a1f4a', accent: '#ffd56b' } }, { man: { top: '#1b2a5a', bottom: '#1b2a5a', accent: '#ffd56b' } }, { woman: { outfit: 'saree', top: '#0b0b12', bottom: '#14193a', accent: '#ffd56b' } }],
+    figs: [{ img: 'lehenga_plum' }, { man: { top: '#1b2a5a', bottom: '#1b2a5a', accent: '#ffd56b' } }, { img: 'lehenga_red' }],
   },
   {
     id: 'haldi',
@@ -87,7 +87,7 @@ export const cards = [
     ],
     motif: 'marigold',
     decor: ['petals', 'pinkflower'],
-    figs: [{ woman: { bun: true, outfit: 'sharara', top: '#f6c445', bottom: '#f9a86a', accent: '#fff3c4' } }, { man: { top: '#e8b84a', bottom: '#f4ecd8', accent: '#9a5a10' } }, { woman: { outfit: 'lehenga', top: '#f4a07a', bottom: '#f9c08a', accent: '#fff0c0' } }],
+    figs: [{ img: 'ghagra' }, { man: { top: '#e8b84a', bottom: '#f4ecd8', accent: '#9a5a10' } }, { img: 'ghagra_pink' }],
   },
   {
     id: 'wedding',
@@ -109,7 +109,7 @@ export const cards = [
     ],
     motif: 'lotus',
     decor: ['bells', 'petals', 'lotus'],
-    figs: [{ woman: { bun: true, outfit: 'lehenga', top: '#d9456f', bottom: '#d9456f', accent: '#ffd56b' } }, { man: { top: '#f1e6cf', bottom: '#f1e6cf', accent: '#c8962b', stole: '#c1121f' } }, { woman: { outfit: 'saree', top: '#2547a8', bottom: '#2547a8', accent: '#f2c14e' } }],
+    figs: [{ img: 'lehenga_pink' }, { man: { top: '#f1e6cf', bottom: '#f1e6cf', accent: '#c8962b', stole: '#c1121f' } }, { img: 'lehenga_blue' }],
   },
 ];
 
