@@ -700,4 +700,14 @@ body.render .stage { background: #000; }
 .i-mono .stamp-face { display: flex; align-items: center; }
 .reel-loading { background: #fbeed4; color: #a3205c; }
 .reel { background: #fbeed4; }
-.ec-slot svg.ec-fig { scale: 1.12; }
+.ec-slot svg.ec-fig { scale: 1.06; }
+.ec-slot svg.ec-fig { scale: 1.06; }
+.ec-figs { top: 38cqw; height: 88cqw; }
+.ec-slot { flex: 0 0 33cqw; height: 86cqw; }
+.ec-slot svg.ec-fig { scale: 1.16; }
+.ec-blurb { top: 127cqw; }
+.ec-time { top: 134cqw; }
+.ec-dress { top: 141cqw; }
+.ec-figs { top: 47cqw; height: 80cqw; }
+.ec-slot { height: 78cqw; }
+.ec-slot svg.ec-fig { scale: 1.1; }

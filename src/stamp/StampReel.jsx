@@ -3,8 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Pause, Play, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import Decor from '../components/art/Decor.jsx';
-import Cutout from '../components/art/Cutout.jsx';
-import Woman from '../components/art/Woman.jsx';
+import { Woman, Man } from '../components/art/Fashion.jsx';
 import { buildAmbient } from '../animation/ambient.js';
 import { trip, hindi, endText, cards } from './stampData.js';
 import { buildStampTimeline, MARKS, FULL, SHUT } from './stampTimeline.js';
@@ -279,7 +278,7 @@ export default function StampReel() {
                       {f.woman ? (
                         <Woman {...f.woman} className="ec-fig amb-bob" />
                       ) : f.man ? (
-                        <Cutout mannequin {...{ g: 'm', ...f.man }} className="ec-fig amb-bob" />
+                        <Man {...f.man} className="ec-fig amb-bob" />
                       ) : (
                         <img className="ec-fig amb-bob" src={`/cutouts/${f.img}.webp`} alt="" draggable={false} />
                       )}
