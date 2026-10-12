@@ -748,3 +748,4 @@ body.render .stage { background: #000; }
 .ec-arch { top: 46cqw; height: 82cqw; left: 11cqw; right: 11cqw; }
 .ec-jaali { opacity: 0.1; mask-image: linear-gradient(transparent 22%, #000 34%, #000 62%, transparent 74%); }
 .ec-slot svg.ec-fig { scale: 0.98; }
+.ec-slot img.ec-fig { max-width: 100%; object-fit: contain; scale: 0.96; transform-origin: 50% 100%; }
