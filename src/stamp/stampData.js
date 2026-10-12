@@ -66,7 +66,7 @@ export const cards = [
     ],
     motif: 'disco',
     decor: ['fairy', 'stars'],
-    figs: [{ img: 'lehenga_plum' }, { img: 'sherwani_maroon' }, { img: 'lehenga_red' }],
+    figs: [{ img: 'lehenga_plum' }, { img: 'sherwani_navy' }, { img: 'lehenga_red' }],
   },
   {
     id: 'haldi',
@@ -87,7 +87,7 @@ export const cards = [
     ],
     motif: 'marigold',
     decor: ['petals', 'pinkflower'],
-    figs: [{ img: 'ghagra' }, { img: 'sherwani4' }, { img: 'ghagra_pink' }],
+    figs: [{ img: 'ghagra' }, { img: 'sherwani_gold' }, { img: 'ghagra_pink' }],
   },
   {
     id: 'wedding',
