@@ -117,7 +117,7 @@ const Chandelier = ({ className = '' }) => (
     {[12, 22, 35, 48, 58].map((x, i) => (
       <g key={x}>
         <path d={`M${x} 34v${8 + (i % 2) * 6}`} stroke="#f0d88a" strokeWidth="1" />
-        <circle className="amb-twinkle-dot" cx={x} cy={44 + (i % 2) * 6} r="2.4" fill="#fff0b8" />
+        <circle cx={x} cy={44 + (i % 2) * 6} r="2.4" fill="#fff0b8" />
       </g>
     ))}
     {[18, 30, 42, 52].map((x) => (
@@ -126,7 +126,7 @@ const Chandelier = ({ className = '' }) => (
   </svg>
 );
 
-const Petals = ({ count = 14 }) => (
+const Petals = ({ count = 8 }) => (
   <>
     {Array.from({ length: count }).map((_, i) => (
       <div key={i} className="petal amb-fall" style={{ left: `${(i * 97) % 100}%` }}>
@@ -140,7 +140,7 @@ const Petals = ({ count = 14 }) => (
 
 const Bokeh = () => (
   <>
-    {Array.from({ length: 14 }).map((_, i) => (
+    {Array.from({ length: 8 }).map((_, i) => (
       <i key={i} className="bokeh amb-twinkle-dot" style={{ left: `${(i * 71) % 96}%`, top: `${(i * 43) % 60}%`, width: `${1.4 + (i % 4)}cqw`, height: `${1.4 + (i % 4)}cqw` }} />
     ))}
   </>

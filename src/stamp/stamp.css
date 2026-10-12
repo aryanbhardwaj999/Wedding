@@ -579,3 +579,33 @@
   box-shadow: 0 0 1.2cqw var(--gold);
   opacity: 0;
 }
+
+/* ── smoothness pass ── */
+.stamp-edge {
+  -webkit-mask: none;
+  mask: none;
+  filter: none;
+  background:
+    radial-gradient(circle calc(var(--s) * 0.3) at 50% 50%, #0a4a42 96%, transparent 100%) 0 0 / var(--s) var(--s) round,
+    #fffaf0;
+  box-shadow: 0 1cqw 2cqw rgba(0, 0, 0, 0.35);
+}
+.istamp img { filter: none; }
+.ch, .word, .mo, .deco, .decor, .petal, .spark, .ec-fig { will-change: auto; }
+.spark { filter: none; }
+.ec-title { text-shadow: 0 0.3cqw 0.8cqw rgba(0, 0, 0, 0.35); }
+.ui-controls, .ui-label { backdrop-filter: none; background: rgba(20, 8, 12, 0.7); }
+.grain { display: none; }
+.lantern-glow { width: 200%; left: -50%; }
+.reel-loading {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  color: #ffd56b;
+  font: 600 12px 'Montserrat', sans-serif;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  background: #0a4a42;
+}

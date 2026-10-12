@@ -52,8 +52,8 @@ export function Cover() {
       <SketchCorner flip />
       <div className="cv-photo cv-in">
         <div className="cv-photo-in">
-          <Cutout imageUrl="/cutouts/lehenga_red.png" className="cv-f" />
-          <Cutout imageUrl="/cutouts/sherwani4.png" className="cv-m" />
+          <Cutout imageUrl="/cutouts/lehenga_red.webp" className="cv-f" />
+          <Cutout imageUrl="/cutouts/sherwani4.webp" className="cv-m" />
           <img className="cv-face cv-face-l" src={people.ashana} alt="" onError={(e) => (e.currentTarget.style.display = 'none')} />
           <img className="cv-face cv-face-r" src={people.rajat} alt="" onError={(e) => (e.currentTarget.style.display = 'none')} />
         </div>
@@ -73,9 +73,9 @@ export function Scene1() {
       {Array.from({ length: 14 }).map((_, i) => (
         <i key={i} className="mote amb-drift" style={{ left: `${(i * 61) % 96}%`, top: `${12 + ((i * 37) % 60)}%` }} />
       ))}
-      <img className="s1-auto" src="/cutouts/auto_jaipur.png" alt="" draggable={false} />
+      <img className="s1-auto" src="/cutouts/auto_jaipur.webp" alt="" draggable={false} />
       <div className="s1-lamp amb-glow" />
-      <img className="s1-tailor" src="/cutouts/tailor.png" alt="" draggable={false} />
+      <img className="s1-tailor" src="/cutouts/tailor.webp" alt="" draggable={false} />
       <div className="s1-couple">
         <WomanBack className="s1-woman" />
         <ManBack className="s1-man" />

@@ -9,6 +9,7 @@ import { buildStampTimeline, MARKS } from './stampTimeline.js';
 import { Motif, Camera, Monogram } from './StampArt.jsx';
 
 gsap.registerPlugin(useGSAP);
+gsap.config({ force3D: true }); // keep animated layers promoted (no 2D<->3D layer flips)
 
 const CLEAN = new URLSearchParams(window.location.search).has('clean'); // ?clean hides the UI for screen-recording
 const NAMES = ['Begin', 'Title', 'Trip', 'Events', ...cards.map((c) => c.title), 'Say cheese', 'Finale'];
@@ -41,14 +42,17 @@ export default function StampReel() {
   const scrubbing = useRef(false);
   const [playing, setPlaying] = useState(true);
   const [scene, setScene] = useState(0);
+  const [ready, setReady] = useState(false);
 
   useGSAP(
     () => {
       const q = gsap.utils.selector(root);
       const tl = buildStampTimeline(q, root.current);
       tlRef.current = tl;
+      tl.pause(); // starts once every image is decoded
       marksRef.current = MARKS;
       ambient.current = buildAmbient(root.current);
+      ambient.current.forEach((t) => t.pause());
       const at = new URLSearchParams(window.location.search).get('t'); // ?t=12 freezes at 12s (debug / stills)
       if (at !== null) tl.time(parseFloat(at)).pause();
       tl.eventCallback('onUpdate', () => {
@@ -64,6 +68,29 @@ export default function StampReel() {
     },
     { scope: root }
   );
+
+  /* decode every image up-front so nothing janks when a card appears */
+  useEffect(() => {
+    const urls = [...cards.flatMap((c) => c.figs.map((f) => `/cutouts/${f.img}.webp`)), '/photos/stamp_hawa.webp', '/photos/stamp_gate.webp'];
+    let alive = true;
+    const all = Promise.all(
+      urls.map((u) => {
+        const im = new Image();
+        im.src = u;
+        return im.decode().catch(() => {});
+      })
+    );
+    // never block longer than 4s, even if an image is slow
+    Promise.race([all, new Promise((r) => setTimeout(r, 4000))]).then(() => alive && setReady(true));
+    return () => {
+      alive = false;
+    };
+  }, []);
+  useEffect(() => {
+    if (!ready || new URLSearchParams(window.location.search).get('t') !== null) return;
+    tlRef.current?.play();
+    ambient.current.forEach((t) => t.paused(false));
+  }, [ready]);
 
   const applyPlaying = useCallback((on) => {
     const tl = tlRef.current;
@@ -154,7 +181,7 @@ export default function StampReel() {
           <div className="istamp i-couple">
             <Edge className="sm" />
             <div className="stamp-face">
-              <img src="/photos/hawa_front.jpg" alt="" />
+              <img src="/photos/stamp_hawa.webp" alt="" />
               <span className="i-names">{trip.couple}</span>
             </div>
           </div>
@@ -175,7 +202,7 @@ export default function StampReel() {
           <div className="istamp i-venue">
             <Edge className="sm" />
             <div className="stamp-face">
-              <img src="/photos/gate_street.jpg" alt="" />
+              <img src="/photos/stamp_gate.webp" alt="" />
               <span className="i-city">{trip.city.toUpperCase()}</span>
               <span className="i-state">{trip.state}</span>
             </div>
@@ -205,7 +232,7 @@ export default function StampReel() {
                   {c.figs.map((f, k) => (
                     <div key={k} className="ec-slot">
                       <i className="ec-spot" />
-                      <img className="ec-fig amb-bob" src={`/cutouts/${f.img}.png`} alt="" draggable={false} />
+                      <img className="ec-fig amb-bob" src={`/cutouts/${f.img}.webp`} alt="" draggable={false} />
                       <i className="ec-floor" />
                     </div>
                   ))}
@@ -263,7 +290,7 @@ export default function StampReel() {
         </section>
 
         <div className="vignette" />
-        <div className="grain" />
+        {!ready && <div className="reel-loading">Loading…</div>}
       </div>
 
       {!CLEAN && (
