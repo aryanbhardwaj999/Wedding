@@ -5,11 +5,11 @@ import { collage } from './stampData.js';
 gsap.registerPlugin(DrawSVGPlugin);
 
 // scene start times (seconds) — also used by prev / next
-export const FULL = [18.4, 24.2, 29.8, 35.4, 41.0]; // moment each event card is fully on screen
-export const MARKS = [0, 4.4, 8.6, 15.0, 17.5, 24.2, 29.8, 35.4, 41.0, 46.2, 50.0];
-const TOTAL = 61.5;
-const SHUT = 46.2;
-const END = 50.0;
+export const FULL = [18.4, 24.2, 29.8, 35.4]; // moment each event card is fully on screen
+export const MARKS = [0, 4.4, 8.6, 15.0, 17.5, 24.2, 29.8, 35.4, 40.6, 44.4];
+const TOTAL = 56.2;
+export const SHUT = 40.6;
+const END = 44.4;
 
 /** One master, scrubbable timeline for the whole stamp reel (≈ 61s, looping). */
 export function buildStampTimeline(q, rootEl) {
@@ -125,6 +125,7 @@ export function buildStampTimeline(q, rootEl) {
   tl.fromTo(q('.end-sign'), { opacity: 0 }, { opacity: 1, duration: 0.7 }, END + 4.0);
   tl.to(q('.end-arch,.end-date,.end-rule,.end-l1,.end-l2,.end-sign'), { opacity: 0, y: -18, duration: 0.6, ease: 'power2.in', stagger: 0.04 }, END + 6.2);
   tl.fromTo(q('.end-ready'), { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7 }, END + 7.0);
+  tl.fromTo(q('.end-tag'), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7 }, END + 9.9);
   tl.fromTo(q('.end-steps li'), { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, ease: 'power2.out', stagger: 0.4 }, END + 7.8);
   tl.to(q('.sr-end'), { autoAlpha: 0, duration: 0.5 }, TOTAL - 0.5);
   tl.to({}, { duration: 0.01 }, TOTAL);

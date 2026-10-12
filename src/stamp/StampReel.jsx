@@ -5,14 +5,24 @@ import { Pause, Play, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react'
 import Decor from '../components/art/Decor.jsx';
 import { buildAmbient } from '../animation/ambient.js';
 import { trip, hindi, endText, cards } from './stampData.js';
-import { buildStampTimeline, MARKS } from './stampTimeline.js';
+import { buildStampTimeline, MARKS, FULL, SHUT } from './stampTimeline.js';
 import { Motif, Camera, Monogram } from './StampArt.jsx';
 
 gsap.registerPlugin(useGSAP);
 gsap.config({ force3D: true }); // keep animated layers promoted (no 2D<->3D layer flips)
 
 const CLEAN = new URLSearchParams(window.location.search).has('clean'); // ?clean hides the UI for screen-recording
-const NAMES = ['Begin', 'Title', 'Trip', 'Events', ...cards.map((c) => c.title), 'Say cheese', 'Finale'];
+const NAMES = ['Begin', 'Title', 'Trip', 'Events', ...cards.map((c) => c.fn), 'Say cheese', 'Finale'];
+// phones / touch screens: skip the purely decorative particle effects
+const LITE = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 600;
+
+// which event card is on screen at time t (-1 = none)
+const activeCard = (t) => {
+  if (t < 15 || t >= SHUT + 0.3) return -1;
+  let idx = 0;
+  for (let i = 1; i < FULL.length; i++) if (t >= FULL[i] - 0.5) idx = i;
+  return idx;
+};
 
 const Chars = ({ text }) =>
   text
@@ -37,6 +47,9 @@ export default function StampReel() {
   const tlRef = useRef(null);
   const marksRef = useRef([]);
   const ambient = useRef([]);
+  const amb = useRef({ cards: [], other: [] });
+  const playingRef = useRef(true);
+  const activeRef = useRef(-2);
   const fill = useRef(null);
   const sceneRef = useRef(0);
   const scrubbing = useRef(false);
@@ -51,7 +64,11 @@ export default function StampReel() {
       tlRef.current = tl;
       tl.pause(); // starts once every image is decoded
       marksRef.current = MARKS;
-      ambient.current = buildAmbient(root.current);
+      const cardEls = [...root.current.querySelectorAll('.ecard')];
+      const cardsAmb = cardEls.map((el) => buildAmbient(el, { lite: LITE }));
+      const otherAmb = [...root.current.querySelectorAll('.sr-bg, .sr-intro, .sr-title, .sr-info, .sr-shutter, .sr-end')].flatMap((el) => buildAmbient(el, { lite: LITE }));
+      amb.current = { cards: cardsAmb, other: otherAmb };
+      ambient.current = [...cardsAmb.flat(), ...otherAmb];
       ambient.current.forEach((t) => t.pause());
       const at = new URLSearchParams(window.location.search).get('t'); // ?t=12 freezes at 12s (debug / stills)
       if (at !== null) tl.time(parseFloat(at)).pause();
@@ -63,6 +80,11 @@ export default function StampReel() {
         if (idx !== sceneRef.current) {
           sceneRef.current = idx;
           setScene(idx);
+        }
+        const ac = activeCard(now);
+        if (ac !== activeRef.current) {
+          activeRef.current = ac;
+          syncAmbient();
         }
       });
     },
@@ -89,14 +111,23 @@ export default function StampReel() {
   useEffect(() => {
     if (!ready || new URLSearchParams(window.location.search).get('t') !== null) return;
     tlRef.current?.play();
-    ambient.current.forEach((t) => t.paused(false));
+    playingRef.current = true;
+    syncAmbient();
   }, [ready]);
+
+  /* only the visible card's decorative tweens run — the rest are paused */
+  const syncAmbient = () => {
+    const on = playingRef.current;
+    amb.current.cards.forEach((g, i) => g.forEach((t) => t.paused(!(on && i === activeRef.current))));
+    amb.current.other.forEach((t) => t.paused(!on));
+  };
 
   const applyPlaying = useCallback((on) => {
     const tl = tlRef.current;
     if (!tl) return;
     tl.paused(!on);
-    ambient.current.forEach((t) => t.paused(!on));
+    playingRef.current = on;
+    syncAmbient();
     setPlaying(on);
   }, []);
   const toggle = () => applyPlaying(!playing);
@@ -204,7 +235,7 @@ export default function StampReel() {
             <div className="stamp-face">
               <img src="/photos/stamp_gate.webp" alt="" />
               <span className="i-city">{trip.city.toUpperCase()}</span>
-              <span className="i-state">{trip.state}</span>
+              <span className="i-state">{trip.place}</span>
             </div>
           </div>
         </section>
@@ -216,18 +247,18 @@ export default function StampReel() {
               key={c.id}
               className={`ecard ec-${c.id}`}
               data-i={i}
-              style={{ '--bg': c.theme.bg, '--bg2': c.theme.bg2, '--ink': c.theme.ink, '--accent': c.theme.accent, '--gold': c.theme.gold }}
+              style={{ '--bg': c.theme_.bg, '--bg2': c.theme_.bg2, '--ink': c.theme_.ink, '--accent': c.theme_.accent, '--gold': c.theme_.gold }}
             >
               <Edge />
               <div className="ecard-face">
                 <Decor kinds={c.decor} />
                 <Motif kind={c.motif} />
                 <div className="ec-frame" />
-                <p className="ec-date ec-in">{c.date}</p>
+                <p className="ec-date ec-in">{c.day}</p>
                 <h2 className="ec-title">
-                  <Chars text={c.title} />
+                  <Chars text={c.theme} />
                 </h2>
-                <p className="ec-kind ec-in">{c.kind}</p>
+                <p className="ec-kind ec-in">{c.fn.toUpperCase()}</p>
                 <div className="ec-figs">
                   {c.figs.map((f, k) => (
                     <div key={k} className="ec-slot">
@@ -242,9 +273,14 @@ export default function StampReel() {
                     <i key={k} />
                   ))}
                 </div>
-                <p className="ec-blurb ec-in">{c.blurb}</p>
+                <p className="ec-blurb ec-in">{c.name}</p>
+                <p className="ec-time ec-in">
+                  {c.time} · {c.venue}
+                </p>
                 <p className="ec-dress ec-in">
-                  Dress code · <b>{c.dress}</b>
+                  <b>Women</b> {c.women}
+                  <br />
+                  <b>Men</b> {c.men}
                 </p>
                 <div className="ec-pal">
                   {c.palette.map((p) => (
@@ -282,6 +318,7 @@ export default function StampReel() {
           <p className="end-l2">{endText.line2}</p>
           <p className="end-sign">&mdash; {endText.signoff} &mdash;</p>
           <p className="end-ready">{endText.ready}</p>
+          <p className="end-tag">{trip.hashtag}</p>
           <ul className="end-steps">
             {endText.steps.map((s) => (
               <li key={s}>{s}</li>
@@ -289,7 +326,7 @@ export default function StampReel() {
           </ul>
         </section>
 
-        <div className="vignette" />
+        {!LITE && <div className="vignette" />}
         {!ready && <div className="reel-loading">Loading…</div>}
       </div>
 

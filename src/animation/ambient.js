@@ -5,9 +5,13 @@ import gsap from 'gsap';
  * (infinite children would make its duration infinite). Returns the tweens
  * so the player can pause / resume them together with the master timeline.
  */
-export function buildAmbient(root) {
+export function buildAmbient(root, { lite = false } = {}) {
+  const HEAVY = ['.amb-fall', '.amb-twinkle', '.amb-twinkle-dot', '.amb-glow', '.amb-note', '.amb-drift', '.amb-bob'];
   const tweens = [];
-  const each = (sel, fn) => root.querySelectorAll(sel).forEach(fn);
+  const each = (sel, fn) => {
+    if (lite && HEAVY.includes(sel)) return;
+    root.querySelectorAll(sel).forEach(fn);
+  };
   const r = (a, b) => a + Math.random() * (b - a);
 
   each('.amb-float', (el) =>

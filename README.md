@@ -1,6 +1,6 @@
 # Wedding Wardrobe Planner — animated reel
 
-A 9:16 animated "wardrobe planner" for Rajat & Ashana's wedding (Jaipur, 3–5 Dec 2026).
+A 9:16 animated "wardrobe planner" for Rajat & Aashana's wedding (Jaipur, 4–5 Dec 2026 — Mehndi, Sangeet, Haldi, Wedding).
 React + Vite + GSAP (`useGSAP`) + Tailwind (base) + lucide-react.
 
 ## Run
@@ -14,7 +14,7 @@ npm run build    # production build in /dist
 ## Views / controls
 
 - Default: **stamp reel** (stamps → event cards → camera → finale), ~61 s loop.
-- `?v=classic` — the earlier street-scene reel (Hawa Mahal / tailor shop).
+- `
 - `?clean` — hide the UI (for screen-recording a reel).
 - `?t=12` — freeze at 12 s (debug / stills).
 - Play/pause, prev/next scene, replay, scrub bar, tap left/right/centre, keyboard (Space, ←, →).
@@ -22,8 +22,6 @@ npm run build    # production build in /dist
 ## Edit content
 
 - Stamp reel: `src/stamp/stampData.js` (names, dates, palettes, dress codes, garments) and `src/stamp/stampTimeline.js` (timing).
-- Classic reel: `src/data/eventsData.js`.
-- Optional couple photos for the classic reel: `public/people/rajat.jpg`, `public/people/ashana.jpg`.
 
 ## Deploy (Vercel)
 
