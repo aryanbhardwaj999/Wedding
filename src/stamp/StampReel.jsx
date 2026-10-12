@@ -11,10 +11,12 @@ import { Motif, Camera, Monogram } from './StampArt.jsx';
 gsap.registerPlugin(useGSAP);
 gsap.config({ force3D: true }); // keep animated layers promoted (no 2D<->3D layer flips)
 
-const CLEAN = new URLSearchParams(window.location.search).has('clean'); // ?clean hides the UI for screen-recording
+const PARAMS = new URLSearchParams(window.location.search);
+const RENDER = PARAMS.has('render'); // used by scripts/export-video.mjs: frames are driven by window.__seek(t)
+const CLEAN = !PARAMS.has('ui'); // no buttons by default — add ?ui to show the controls
 const NAMES = ['Begin', 'Title', 'Trip', 'Events', ...cards.map((c) => c.fn), 'Say cheese', 'Finale'];
 // phones / touch screens: skip the purely decorative particle effects
-const LITE = window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 600;
+const LITE = !RENDER && (window.matchMedia('(pointer: coarse)').matches || window.innerWidth < 600);
 
 // which event card is on screen at time t (-1 = none)
 const activeCard = (t) => {
@@ -70,6 +72,13 @@ export default function StampReel() {
       amb.current = { cards: cardsAmb, other: otherAmb };
       ambient.current = [...cardsAmb.flat(), ...otherAmb];
       ambient.current.forEach((t) => t.pause());
+      if (RENDER) {
+        document.body.classList.add('render');
+        window.__seek = (t) => {
+          tl.time(t, false);
+          ambient.current.forEach((tw) => tw.totalTime(t));
+        };
+      }
       const at = new URLSearchParams(window.location.search).get('t'); // ?t=12 freezes at 12s (debug / stills)
       if (at !== null) tl.time(parseFloat(at)).pause();
       tl.eventCallback('onUpdate', () => {
@@ -109,7 +118,8 @@ export default function StampReel() {
     };
   }, []);
   useEffect(() => {
-    if (!ready || new URLSearchParams(window.location.search).get('t') !== null) return;
+    window.__ready = ready;
+    if (!ready || RENDER || new URLSearchParams(window.location.search).get('t') !== null) return;
     tlRef.current?.play();
     playingRef.current = true;
     syncAmbient();

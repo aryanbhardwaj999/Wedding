@@ -45,7 +45,7 @@ export const cards = [
     ],
     motif: 'peacock',
     decor: ['lotus', 'bokeh'],
-    figs: [{ img: 'lehenga_teal' }, { img: 'bandhgala_green' }, { img: 'lehenga_emerald' }],
+    figs: [{ img: 'lehenga_teal' }, { img: 'sherwani_teal' }, { img: 'lehenga_emerald' }],
   },
   {
     id: 'sangeet',
@@ -66,7 +66,7 @@ export const cards = [
     ],
     motif: 'disco',
     decor: ['fairy', 'stars'],
-    figs: [{ img: 'lehenga_plum' }, { img: 'suit_mann' }, { img: 'lehenga_red' }],
+    figs: [{ img: 'lehenga_plum' }, { img: 'sherwani_maroon' }, { img: 'lehenga_red' }],
   },
   {
     id: 'haldi',

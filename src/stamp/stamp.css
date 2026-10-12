@@ -665,3 +665,8 @@
 .ec-haldi .ec-date { top: 11cqw; }
 .i-dates { font-size: 6.4cqw; }
 .i-month { font-size: 5cqw; }
+
+/* ── video-export mode: the reel fills the viewport exactly (no frame, no rounded corners) ── */
+body.render .reel { --H: 100dvh; border-radius: 0; box-shadow: none; }
+body.render .stage { background: #000; }
+.mv { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #0a4a42; }
