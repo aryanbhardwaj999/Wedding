@@ -1,0 +1,10 @@
+node_modules
+dist
+.vercel
+.env*
+*.log
+.DS_Store
+Thumbs.db
+# reference videos / large source media are not part of the app
+*.mp4
+*.mov
