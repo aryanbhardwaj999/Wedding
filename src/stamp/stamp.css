@@ -672,3 +672,32 @@ body.render .stage { background: #000; }
 .mv { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #0a4a42; }
 .ec-slot svg.ec-fig { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; aspect-ratio: auto; filter: drop-shadow(0 1.2cqw 1.2cqw rgba(0,0,0,.35)); }
 .ec-slot svg.ec-fig { scale: 1.14; transform-origin: 50% 100%; }
+
+/* ── light theme ── */
+.sr-bg { background: radial-gradient(ellipse at 50% 28%, #fffaf0 0%, #fbeed4 55%, #f3dcb4 100%); }
+.sr-bg-in { opacity: 0.8; filter: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160' fill='none' stroke='%23c9962b' stroke-width='1.3'><g opacity='.75'><path d='M80 26c8 8 10 20 0 34-10-14-8-26 0-34z'/><path d='M62 34c8 4 14 14 18 26-12-2-22-10-18-26zM98 34c-8 4-14 14-18 26 12-2 22-10 18-26z'/><path d='M80 60v12'/><path d='M80 98c-10-8-26-6-34 8M80 98c10-8 26-6 34 8'/><circle cx='46' cy='108' r='3'/><circle cx='114' cy='108' r='3'/><path d='M0 80q20-14 40 0t40 0 40 0 40 0' opacity='.5'/><path d='M80 110v40M72 128q8-8 16 0M70 142q10-8 20 0' opacity='.7'/></g></svg>"); }
+.stamp-edge { background: radial-gradient(circle calc(var(--s) * 0.3) at 50% 50%, #f3dcb4 96%, transparent 100%) 0 0 / var(--s) var(--s) round, #ffffff; box-shadow: 0 1cqw 2.4cqw rgba(120, 70, 20, 0.35); }
+.sr-presents { color: #a3205c; text-shadow: none; }
+.sr-h { color: #e0147a; text-shadow: 0.8cqw 0.9cqw 0 #ffd56b, 1.6cqw 1.8cqw 0 rgba(120, 60, 10, 0.18); }
+.sr-sub { color: #6b2a3a; }
+.sh-text { color: #a3205c; text-shadow: 0 0.6cqw 1.6cqw rgba(160, 90, 20, 0.25); }
+.sr-end { color: #5a1f2e; background: none; }
+.end-arch { color: #a3205c; }
+.end-date { color: #a8741a; }
+.end-rule { background: linear-gradient(90deg, transparent, #c9962b, transparent); }
+.end-l1, .end-l2 { color: #5a1f2e; }
+.end-sign { color: #e0147a; }
+.end-ready { color: #a3205c; }
+.end-tag { color: #a8741a; }
+.end-steps li { color: #a3205c; text-shadow: none; }
+.end-steps li:nth-child(2) { color: #e0147a; }
+.end-steps li:nth-child(3) { color: #a8741a; }
+.i-mono .stamp-face { color: #a3205c; background: #fffaf0; flex-direction: column; justify-content: center; gap: 2cqw; }
+.i-mono .mono { width: 62%; }
+.i-tag { font: 400 5.4cqw 'Yatra One', serif; color: #a8741a; position: relative; z-index: 2; margin-top: -1cqw; }
+.i-mono { display: block; }
+.i-mono .stamp-face { display: flex; align-items: center; }
+.reel-loading { background: #fbeed4; color: #a3205c; }
+.reel { background: #fbeed4; }
+.ec-slot svg.ec-fig { scale: 1.12; }

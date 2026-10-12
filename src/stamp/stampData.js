@@ -45,7 +45,7 @@ export const cards = [
     ],
     motif: 'peacock',
     decor: ['lotus', 'bokeh'],
-    figs: [{ img: 'lehenga_teal' }, { man: { outfit: 'sherwani', top: '#1c8f84', bottom: '#e9e2cf', accent: '#f2c14e' } }, { img: 'lehenga_emerald' }],
+    figs: [{ man: { g: 'f', outfit: 'coord', top: '#17b3b8', bottom: '#0f7c80', accent: '#f2c14e' } }, { man: { outfit: 'sherwani', top: '#1c8f84', bottom: '#e9e2cf', accent: '#f2c14e' } }, { man: { g: 'f', outfit: 'saree', top: '#0f7c4a', bottom: '#2e8b57', accent: '#f2c14e' } }],
   },
   {
     id: 'sangeet',
@@ -66,7 +66,7 @@ export const cards = [
     ],
     motif: 'disco',
     decor: ['fairy', 'stars'],
-    figs: [{ img: 'lehenga_plum' }, { man: { outfit: 'sherwani', top: '#1b2a5a', bottom: '#1b2a5a', accent: '#ffd56b' } }, { img: 'lehenga_red' }],
+    figs: [{ man: { g: 'f', outfit: 'gown', top: '#6d1a36', bottom: '#6d1a36', accent: '#ffd56b' } }, { man: { outfit: 'sherwani', top: '#1b2a5a', bottom: '#1b2a5a', accent: '#ffd56b' } }, { man: { g: 'f', outfit: 'saree', top: '#111827', bottom: '#1b2a4a', accent: '#ffd56b' } }],
   },
   {
     id: 'haldi',
@@ -87,7 +87,7 @@ export const cards = [
     ],
     motif: 'marigold',
     decor: ['petals', 'pinkflower'],
-    figs: [{ img: 'ghagra' }, { man: { outfit: 'sherwani', top: '#e8b84a', bottom: '#f4ecd8', accent: '#9a5a10' } }, { img: 'ghagra_pink' }],
+    figs: [{ man: { g: 'f', outfit: 'sharara', top: '#f6c445', bottom: '#f9a86a', accent: '#fff3c4' } }, { man: { outfit: 'sherwani', top: '#e8b84a', bottom: '#f4ecd8', accent: '#9a5a10' } }, { man: { g: 'f', outfit: 'lehenga', top: '#f4a07a', bottom: '#f9c08a', accent: '#fff0c0' } }],
   },
   {
     id: 'wedding',
@@ -109,7 +109,7 @@ export const cards = [
     ],
     motif: 'lotus',
     decor: ['bells', 'petals', 'lotus'],
-    figs: [{ img: 'lehenga_pink' }, { man: { outfit: 'sherwani', top: '#f1e6cf', bottom: '#f1e6cf', accent: '#c8962b' } }, { img: 'lehenga_blue' }],
+    figs: [{ man: { g: 'f', outfit: 'lehenga', top: '#d9456f', bottom: '#d9456f', accent: '#ffd56b' } }, { man: { outfit: 'sherwani', top: '#f1e6cf', bottom: '#f1e6cf', accent: '#c8962b' } }, { man: { g: 'f', outfit: 'saree', top: '#2547a8', bottom: '#2547a8', accent: '#f2c14e' } }],
   },
 ];
 

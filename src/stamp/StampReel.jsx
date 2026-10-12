@@ -239,6 +239,7 @@ export default function StampReel() {
             <Edge className="sm" />
             <div className="stamp-face">
               <Monogram />
+              <span className="i-tag">{trip.hashtag}</span>
             </div>
           </div>
           <div className="istamp i-venue">
@@ -275,7 +276,7 @@ export default function StampReel() {
                     <div key={k} className="ec-slot">
                       <i className="ec-spot" />
                       {f.man ? (
-                        <Cutout g="m" mannequin {...f.man} className="ec-fig amb-bob" />
+                        <Cutout mannequin {...{ g: 'm', ...f.man }} className="ec-fig amb-bob" />
                       ) : (
                         <img className="ec-fig amb-bob" src={`/cutouts/${f.img}.webp`} alt="" draggable={false} />
                       )}

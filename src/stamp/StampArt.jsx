@@ -164,6 +164,7 @@ export function Monogram({ big }) {
         <path d="M118 44q-10-12-16 0t16 0z" />
       </g>
       <path d="M60 176q20 8 40 0" stroke="#d4a017" strokeWidth="1.6" fill="none" />
+      <path d="M100 52q6-8 12 0" stroke="#d4a017" strokeWidth="1.2" fill="none" />
     </svg>
   );
 }

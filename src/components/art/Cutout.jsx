@@ -317,13 +317,13 @@ export default function Cutout({
       {defs}
       {female ? (
         <>
-          {hairBack}
+          {!mannequin && hairBack}
           {armsSkin}
           {femaleBody()}
           {sleeves(0.35, U('top'), 9)}
           {hands}
           {head}
-          {hairTop}
+          {!mannequin && hairTop}
           <path d="M33 288h16M61 288h16" stroke="#6b4a2a" strokeWidth="3" strokeLinecap="round" />
           {femaleStole}
         </>
