@@ -670,3 +670,5 @@
 body.render .reel { --H: 100dvh; border-radius: 0; box-shadow: none; }
 body.render .stage { background: #000; }
 .mv { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; background: #0a4a42; }
+.ec-slot svg.ec-fig { position: absolute; left: 0; bottom: 0; width: 100%; height: 100%; aspect-ratio: auto; filter: drop-shadow(0 1.2cqw 1.2cqw rgba(0,0,0,.35)); }
+.ec-slot svg.ec-fig { scale: 1.14; transform-origin: 50% 100%; }

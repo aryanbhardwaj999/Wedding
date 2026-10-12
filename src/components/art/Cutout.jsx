@@ -27,11 +27,13 @@ export default function Cutout({
   beard,
   glasses,
   imageUrl,
+  mannequin,
   className = '',
   style,
 }) {
   const uid = useId().replace(/:/g, '');
   if (imageUrl) return <img className={`cut ${className}`} style={style} src={imageUrl} alt="" draggable={false} />;
+  if (mannequin) skin = '#f1eadb';
   const bot = bottom || top;
   const id = `c${uid}`;
   const U = (n) => `url(#${id}${n})`;
@@ -331,7 +333,7 @@ export default function Cutout({
           {maleBody()}
           {hands}
           {head}
-          {hairTop}
+          {!mannequin && hairTop}
         </>
       )}
     </svg>

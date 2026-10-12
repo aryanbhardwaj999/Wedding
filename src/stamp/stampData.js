@@ -45,7 +45,7 @@ export const cards = [
     ],
     motif: 'peacock',
     decor: ['lotus', 'bokeh'],
-    figs: [{ img: 'lehenga_teal' }, { img: 'sherwani_teal' }, { img: 'lehenga_emerald' }],
+    figs: [{ img: 'lehenga_teal' }, { man: { outfit: 'sherwani', top: '#1c8f84', bottom: '#e9e2cf', accent: '#f2c14e' } }, { img: 'lehenga_emerald' }],
   },
   {
     id: 'sangeet',
@@ -66,7 +66,7 @@ export const cards = [
     ],
     motif: 'disco',
     decor: ['fairy', 'stars'],
-    figs: [{ img: 'lehenga_plum' }, { img: 'sherwani_navy' }, { img: 'lehenga_red' }],
+    figs: [{ img: 'lehenga_plum' }, { man: { outfit: 'sherwani', top: '#1b2a5a', bottom: '#1b2a5a', accent: '#ffd56b' } }, { img: 'lehenga_red' }],
   },
   {
     id: 'haldi',
@@ -87,7 +87,7 @@ export const cards = [
     ],
     motif: 'marigold',
     decor: ['petals', 'pinkflower'],
-    figs: [{ img: 'ghagra' }, { img: 'sherwani_gold' }, { img: 'ghagra_pink' }],
+    figs: [{ img: 'ghagra' }, { man: { outfit: 'sherwani', top: '#e8b84a', bottom: '#f4ecd8', accent: '#9a5a10' } }, { img: 'ghagra_pink' }],
   },
   {
     id: 'wedding',
@@ -109,7 +109,7 @@ export const cards = [
     ],
     motif: 'lotus',
     decor: ['bells', 'petals', 'lotus'],
-    figs: [{ img: 'lehenga_pink' }, { img: 'sherwani2' }, { img: 'lehenga_blue' }],
+    figs: [{ img: 'lehenga_pink' }, { man: { outfit: 'sherwani', top: '#f1e6cf', bottom: '#f1e6cf', accent: '#c8962b' } }, { img: 'lehenga_blue' }],
   },
 ];
 

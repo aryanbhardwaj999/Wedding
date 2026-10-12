@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { Pause, Play, RotateCcw, ChevronLeft, ChevronRight } from 'lucide-react';
 import Decor from '../components/art/Decor.jsx';
+import Cutout from '../components/art/Cutout.jsx';
 import { buildAmbient } from '../animation/ambient.js';
 import { trip, hindi, endText, cards } from './stampData.js';
 import { buildStampTimeline, MARKS, FULL, SHUT } from './stampTimeline.js';
@@ -102,7 +103,7 @@ export default function StampReel() {
 
   /* decode every image up-front so nothing janks when a card appears */
   useEffect(() => {
-    const urls = [...cards.flatMap((c) => c.figs.map((f) => `/cutouts/${f.img}.webp`)), '/photos/stamp_hawa.webp', '/photos/stamp_gate.webp'];
+    const urls = [...cards.flatMap((c) => c.figs.filter((f) => f.img).map((f) => `/cutouts/${f.img}.webp`)), '/photos/stamp_hawa.webp', '/photos/stamp_gate.webp'];
     let alive = true;
     const all = Promise.all(
       urls.map((u) => {
@@ -273,7 +274,11 @@ export default function StampReel() {
                   {c.figs.map((f, k) => (
                     <div key={k} className="ec-slot">
                       <i className="ec-spot" />
-                      <img className="ec-fig amb-bob" src={`/cutouts/${f.img}.webp`} alt="" draggable={false} />
+                      {f.man ? (
+                        <Cutout g="m" mannequin {...f.man} className="ec-fig amb-bob" />
+                      ) : (
+                        <img className="ec-fig amb-bob" src={`/cutouts/${f.img}.webp`} alt="" draggable={false} />
+                      )}
                       <i className="ec-floor" />
                     </div>
                   ))}
